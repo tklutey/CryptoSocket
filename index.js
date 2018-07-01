@@ -13,6 +13,8 @@ const prices =
     'XRPUSD' : '0.47067'
   };
 
+var port = process.env.PORT || 5000;
+
 /**
  * Serve index.html at root endpoint
  */
@@ -38,6 +40,6 @@ io.on('connection', function (socket) {
 /**
  * Server listens on port 5000
  */
-server.listen(5000, () => {
+server.listen(port, () => {
   console.log("Server started!")
 })
