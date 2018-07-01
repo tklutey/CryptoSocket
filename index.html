@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>CryptoSocket</title>
+</head>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  var socket = io()
+  $(function () {
+    $('form').submit(function () {
+      socket.emit('getQuote', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+  });
+
+  socket.on('rate', function(data) {
+    console.log(data)
+    $('#quotes').append($('<p>').text(data.ticker + ': ' + data.quote));
+  });
+</script>
+
+<body>
+  <h1> CryptoSocket </h1>
+  <p> Available quotes: BTCUSD, ETHUSD, ETHBTC, XRPUSD </p>
+  <form action="">
+    <input id="m" autocomplete="off" />
+    <button>Send</button>
+  </form>
+  <ul id='quotes'></ul>
+</body>
+
+</html>
