@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
-const functions = require('firebase-functions');
 
 /**
  * Const defining crypto pair rates
@@ -18,7 +17,7 @@ const prices =
  * Serve index.html at root endpoint
  */
 app.get('/', function (req, res) {
-    res.sendFile('../public/index.html');
+    res.sendFile('__dirname', 'index.html');
 });
 
 /**
@@ -40,5 +39,5 @@ io.on('connection', function (socket) {
  * Server listens on port 5000
  */
 server.listen(5000, () => {
-  console.log("Server started: http://localhost:${port}")
+  console.log("Server started!")
 })
